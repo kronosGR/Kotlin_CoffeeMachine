@@ -1,0 +1,9 @@
+# Project exclude paths
+/.gradle/
+/Coffee Machine/task/build/
+/Coffee Machine/task/out/
+/Coffee Machine/task/out/production/classes/
+/Topics/Property accessors/Implement a class/out/
+/Topics/Property accessors/Implement a class/out/production/classes/
+/Topics/Property accessors/Weather comparison/out/
+/Topics/Property accessors/Weather comparison/out/production/classes/
