@@ -7,47 +7,45 @@ enum class Items(val onoma: String, val milk: Int, val coffee: Int, val water: I
     cappuccino("cappuccino", 100, 12, 200, 6)
 }
 
-fun main() {
-
-    var MILK = 540
-    var COFFEE = 120
-    var WATER = 400
-    var CUPS = 9
-    var MONEY = 550
+class CoffeeMachine() {
+    private var milk = 540
+    private var coffee = 120
+    private var water = 400
+    private var cups = 9
+    private var money = 550
 
     fun info() {
         println()
         println("The coffee machine has:")
-        println("$WATER ml of water")
-        println("$MILK ml of milk")
-        println("$COFFEE g of coffee beans")
-        println("$CUPS disposable cups")
-        println("$$MONEY of money")
+        println("${this.water} ml of water")
+        println("${this.milk} ml of milk")
+        println("${this.coffee} g of coffee beans")
+        println("${this.cups} disposable cups")
+        println("$${this.money} of money")
         println()
     }
 
     fun use(item: Items) {
-
         var msg = "I have enough resources, making you a coffee!"
-        if (MILK - item.milk < 0) {
+        if (this.milk - item.milk < 0) {
             msg = "Sorry, not enough milk!"
         }
-        if (COFFEE - item.coffee < 0) {
+        if (this.coffee - item.coffee < 0) {
             msg = "Sorry, not enough coffee beans!"
         }
-        if (WATER - item.water < 0) {
+        if (this.water - item.water < 0) {
             msg = "Sorry, not enough water!"
         }
-        if (CUPS - 1 < 0) {
+        if (this.cups - 1 < 0) {
             msg = "Sorry, not enough disposable cups!"
         }
 
         if (msg.equals("I have enough resources, making you a coffee!")) {
-            MILK -= item.milk
-            COFFEE -= item.coffee
-            WATER -= item.water
-            CUPS--
-            MONEY += item.price
+            this.milk -= item.milk
+            this.coffee -= item.coffee
+            this.water -= item.water
+            this.cups--
+            this.money += item.price
         }
 
         println(msg)
@@ -71,34 +69,37 @@ fun main() {
 
     fun fill() {
         println("Write how many ml of water you want to add:")
-        WATER += readln().toInt()
+        this.water += readln().toInt()
         println("Write how many ml of milk you want to add:")
-        MILK += readln().toInt()
+        this.milk += readln().toInt()
         println("Write how many grams of coffee beans you want to add:")
-        COFFEE += readln().toInt()
+        this.coffee += readln().toInt()
         println("Write how many disposable cups you want to add:")
-        CUPS += readln().toInt()
+        this.cups += readln().toInt()
         println()
     }
 
     fun take() {
-        println("I gave you $MONEY")
-        MONEY = 0
+        println("I gave you ${this.money}")
+        this.money = 0
         println()
     }
+}
+
+fun main() {
+    val coffeeMachine = CoffeeMachine()
 
     fun getInput(): String {
         println("Write action (buy, fill, take,remaining, exit):")
         return readln()
     }
 
-    //info()
     while (true) {
         when (getInput()) {
-            "buy" -> buy()
-            "fill" -> fill()
-            "take" -> take()
-            "remaining" -> info()
+            "buy" -> coffeeMachine.buy()
+            "fill" -> coffeeMachine.fill()
+            "take" -> coffeeMachine.take()
+            "remaining" -> coffeeMachine.info()
             "exit" -> break;
         }
     }
